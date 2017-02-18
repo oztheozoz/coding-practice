@@ -1,13 +1,13 @@
 function Trie() {
-    this.size = 0;
-    this.children = [];
+    var size = 0;
+    var children = [];
     this.addStr = function (str, index) {
         if(str.length === index) return;
-        this.size++;
-        let child = this.children[getCharIndex(str[index])];
+        size++;
+        let child = children[getCharIndex(str[index])];
         if(child === undefined) {
             child = new Trie();
-            this.setNode(str[index], child);
+            setNode(str[index], child);
         }
         child.addStr(str, index + 1);
     }
@@ -21,12 +21,12 @@ function Trie() {
             str = '';
         }
 
-        if(this.children.length === 0) {
+        if(children.length === 0) {
             console.log(str);
         } else {
-            for(let i = 0, l = this.children.length; i < l; i++) {
-                if(this.children[i] !== undefined) {
-                    this.children[i].print(str + getChar(i));
+            for(let i = 0, l = children.length; i < l; i++) {
+                if(children[i] !== undefined) {
+                    children[i].print(str + getChar(i));
                 }
             }
         }
@@ -40,20 +40,20 @@ function Trie() {
         return String.fromCharCode('a'.charCodeAt(0) + index);
     }
 
-    this.getNode = function(char) {
-        return this.children[getCharIndex(char)];
+    var getNode = function(char) {
+        return children[getCharIndex(char)];
     }
 
-    this.setNode = function(char, node) {
-        this.children[getCharIndex(char)] = node;
+    var setNode = function(char, node) {
+        children[getCharIndex(char)] = node;
     }
 
     this.findCount = function(str, index) {
         if(str.length === index) {
-            return this.size;
+            return size;
         }
 
-        let child = this.children[getCharIndex(str[index])];
+        let child = children[getCharIndex(str[index])];
         if(child === undefined) {
             return 0;
         }
