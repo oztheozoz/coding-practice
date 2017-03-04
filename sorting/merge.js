@@ -61,6 +61,6 @@ function mergeSort(array) {
         console.log('after merge', array);
     }
 }
-var test = [6,5,4,3,2,1];
+var test = [10,8,2,4,6,5,4,3,2,1];
 mergeSort(test);
 console.log(test);
